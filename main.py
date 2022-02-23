@@ -20,6 +20,8 @@ def main(checkinfo):
             if yb_result["code"] != 0:
                 tuisong("%s" % L[i], yb_result["msg"])
         i = i+1
+    api = "https://api.day.app/%s/易班打卡提醒/脚本运行成功?" % (BARK)
+    send = requests.get(url=api)
     print("%s 脚本运行完成" % date)
 
 
@@ -47,8 +49,7 @@ def post(loginToken, address):
         "isTouch": "否",
         "isPatient": "不是"
     }
-    api = "https://api.day.app/%s/易班打卡提醒/打卡成功?" % (BARK)
-    send = requests.get(url=api)
+
     if not address:
         yb_result = session.post(
             url=url_save, headers=UA, data=data_yb_save).json()
