@@ -13,7 +13,7 @@ def main(checkinfo):
     L.sort()
     while i < len(checkinfo):
         try:
-            post(checkinfo["%s" % L[i]][0], checkinfo["%s" % L[i]][1])
+            post(L[i],checkinfo["%s" % L[i]][0], checkinfo["%s" % L[i]][1])
         except KeyError:
             tuisong("%s" % L[i], "loginToken过期")
         else:
@@ -23,7 +23,7 @@ def main(checkinfo):
     print("%s 脚本运行完成" % date)
 
 
-def post(loginToken, address):
+def post(checkinfo,loginToken, address):
     global yb_result
     session = requests.Session()
     url_1 = "http://f.yiban.cn/iapp378946/i/%s" % loginToken
