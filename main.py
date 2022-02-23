@@ -14,7 +14,6 @@ def main(checkinfo):
     while i < len(checkinfo):
         try:
             post(checkinfo["%s" % L[i]][0], checkinfo["%s" % L[i]][1])
-            tuisong("%s" % L[i], "打卡成功")
         except KeyError:
             tuisong("%s" % L[i], "loginToken过期")
         else:
@@ -48,6 +47,7 @@ def post(loginToken, address):
         "isTouch": "否",
         "isPatient": "不是"
     }
+    tuisong("%s" % L[i], "打卡成功")
     if not address:
         yb_result = session.post(
             url=url_save, headers=UA, data=data_yb_save).json()
@@ -61,7 +61,7 @@ def post(loginToken, address):
 
 # 推送判断
 def tuisong(name, error):
-    api = "https://api.day.app/%s/易班打卡异常提醒/%s %s?" % (BARK, name, error)
+    api = "https://api.day.app/%s/易班打卡提醒/%s %s?" % (BARK, name, error)
     send = requests.get(url=api)
 
 
