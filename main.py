@@ -14,6 +14,7 @@ def main(checkinfo):
     while i < len(checkinfo):
         try:
             post(checkinfo["%s" % L[i]][0], checkinfo["%s" % L[i]][1])
+            tuisong("%s" % L[i], "打卡成功")
         except KeyError:
             tuisong("%s" % L[i], "loginToken过期")
         else:
