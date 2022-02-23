@@ -47,6 +47,8 @@ def post(loginToken, address):
         "isTouch": "否",
         "isPatient": "不是"
     }
+    L = list(checkinfo.keys())
+    L.sort()
     tuisong("%s" % L[i], "打卡成功")
     if not address:
         yb_result = session.post(
