@@ -13,7 +13,7 @@ def main(checkinfo):
     L.sort()
     while i < len(checkinfo):
         try:
-            post(L[i],checkinfo["%s" % L[i]][0], checkinfo["%s" % L[i]][1])
+            post(checkinfo["%s" % L[i]][0], checkinfo["%s" % L[i]][1])
         except KeyError:
             tuisong("%s" % L[i], "loginToken过期")
         else:
@@ -23,7 +23,7 @@ def main(checkinfo):
     print("%s 脚本运行完成" % date)
 
 
-def post(checkinfo,loginToken, address):
+def post(loginToken, address):
     global yb_result
     session = requests.Session()
     url_1 = "http://f.yiban.cn/iapp378946/i/%s" % loginToken
@@ -47,9 +47,8 @@ def post(checkinfo,loginToken, address):
         "isTouch": "否",
         "isPatient": "不是"
     }
-    L = list(checkinfo.keys())
-    L.sort()
-    tuisong("%s" % L[i], "打卡成功")
+    api = "https://api.day.app/%s/易班打卡提醒/打卡成功?" % (BARK)
+    send = requests.get(url=api)
     if not address:
         yb_result = session.post(
             url=url_save, headers=UA, data=data_yb_save).json()
@@ -63,7 +62,7 @@ def post(checkinfo,loginToken, address):
 
 # 推送判断
 def tuisong(name, error):
-    api = "https://api.day.app/%s/易班打卡提醒/%s %s?" % (BARK, name, error)
+    api = "https://api.day.app/%s/易班打卡异常提醒/%s %s?" % (BARK, name, error)
     send = requests.get(url=api)
 
 
