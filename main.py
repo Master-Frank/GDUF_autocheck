@@ -73,7 +73,7 @@ if __name__ == "__main__":
     USERS = os.environ["USERS"]
     USERS = ast.literal_eval(USERS)
     UA = {
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 yiban_iOS/4.9.10"
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 yiban_iOS/5.0.9"
     }
 
     main(USERS)
